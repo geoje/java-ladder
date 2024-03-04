@@ -20,13 +20,7 @@ public class Game {
 
     public Map<String, String> run() {
         List<Integer> pairs = calculateStartToEnd();
-
-        for (int i = 0; i < pairs.size(); i++) {
-            String name = people.getName(i);
-            String prize = prizes.getName(pairs.get(i));
-            result.put(name, prize);
-        }
-
+        createResult(pairs);
         return result;
     }
 
@@ -50,6 +44,14 @@ public class Game {
             return position - leftMovement(position, depth);
         }
         return position + rightMovement(position, depth) - leftMovement(position, depth);
+    }
+    
+    private void createResult(List<Integer> pairs) {
+        for (int i = 0; i < pairs.size(); i++) {
+            String name = people.getName(i);
+            String prize = prizes.getName(pairs.get(i));
+            result.put(name, prize);
+        }
     }
 
     private boolean isFirst(int position) {
